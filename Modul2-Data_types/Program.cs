@@ -35,9 +35,12 @@ namespace Modul2_Data_types
         */
 
         static void Main(string[] args)
-        {
-            Console.WriteLine($"Task One :\n" + TaskOne());
-            Console.WriteLine($"Task Two :\n" + TaskTwo());
+        {            
+            Console.WriteLine($"Task One :\n{TaskOne()}");
+            Console.WriteLine($"Task Two :\n{TaskTwo()}");
+            Console.WriteLine($"Task Three :\nDiagonal = {TaskThree(2, 4):F2}\n");
+            Console.WriteLine($"Task Four :\n{TaskFour()}");
+
         }
 
         private static string TaskOne()
@@ -59,6 +62,23 @@ namespace Modul2_Data_types
             char c = '3';
 
             return $"{c} {b} {a}\n";
+        }
+
+        private static double TaskThree(double a, double b)
+        {
+            double sumOfSquaresAandB = Math.Pow(a, 2) + Math.Pow(b, 2);
+            double diagonal = Math.Sqrt(sumOfSquaresAandB);
+
+            return diagonal;
+        }
+
+        private static string TaskFour()
+        {
+            int valueA = 10;
+            string valueB = "Szkola Dotneta";
+            float valueC = 12.5f;
+
+            return $"Value A(int) : {valueA}\nValue B(string): {valueB}\nValue C(float) : {valueC}";
         }
     }
 }
