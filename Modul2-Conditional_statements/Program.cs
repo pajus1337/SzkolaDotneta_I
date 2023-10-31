@@ -1,4 +1,6 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Numerics;
+using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Modul2_Conditional_statements
 {
@@ -10,6 +12,9 @@ namespace Modul2_Conditional_statements
             TaskTwo(15);
             TaskThree();
             TaskFour();
+            TaskFive(21);
+            TaskSix(140);
+            TaskSeven(25, 63, 79);
         }
 
         private static void TaskOne(int a, int b)
@@ -82,6 +87,66 @@ namespace Modul2_Conditional_statements
             {
                 Console.WriteLine($"the entered value {userInput} is incorrect, check the correctness and try again.");
             }
+        }
+
+        private static void TaskFive(int testValue)
+        {
+            const int AGE_REQUIRED = 21;
+            int userAge = testValue;
+            Console.WriteLine("Task Five :");
+            Console.WriteLine(userAge >= AGE_REQUIRED ? $"You can become a member of parliament" : $"You can become a member of parliament first in {AGE_REQUIRED-userAge} year(s)");
+        }
+
+        private static void TaskSix(int testValue)
+        {
+            int userHeight = testValue;
+
+            Console.WriteLine("Task Six :");
+            if (userHeight <= 140 && userHeight >= 1)
+            {
+                Console.WriteLine("You are a dwarf");
+            }
+            else if (userHeight > 140 && userHeight < 187)
+            {
+                Console.WriteLine("You find yourself with your height in the standard");
+            }
+            else if (userHeight > 187)
+            {
+                Console.WriteLine("You are a favorite of women,congrats.");
+            }
+            else
+            {
+                Console.WriteLine("Something went wrong");
+            }
+        }
+
+        private static void TaskSeven(int testValueA, int testValueB, int testValueC)
+        {
+            int userValueInputA = testValueA;
+            int userValueInputB = testValueB;
+            int userValueInputC = testValueC;
+            int largestEnteredValue;
+
+            Console.WriteLine("Task Seven : ");
+
+            if ((userValueInputA > userValueInputB) && (userValueInputA > userValueInputC))
+            {
+                largestEnteredValue = userValueInputA;
+            }
+            else if ((userValueInputB > userValueInputA) && (userValueInputB > userValueInputC))
+            {
+                largestEnteredValue = userValueInputB;
+            }
+            else
+            {
+                largestEnteredValue = userValueInputC;
+            }
+            Console.WriteLine($"The largest of the given 3 numbers : [{userValueInputA}, {userValueInputB}, {userValueInputC}] is {largestEnteredValue}");
+        }
+
+        private static void TaskEight()
+        {
+
         }
     }
 }
