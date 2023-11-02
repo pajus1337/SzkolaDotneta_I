@@ -35,7 +35,7 @@ namespace Modul2_Data_types
         */
 
         static void Main(string[] args)
-        {            
+        {
             Console.WriteLine($"Task One :\n{TaskOne()}");
             Console.WriteLine($"Task Two :\n{TaskTwo()}");
             Console.WriteLine($"Task Three :\nDiagonal = {TaskThree(2, 4):F2}\n");
@@ -50,8 +50,8 @@ namespace Modul2_Data_types
             string surName = "Robertowski";
             int age = 22;
             char gender = 'm';
-            long peselNumber = 123345678910;
-            int employeeNumber = 112;
+            string peselNumber = "123345678910";
+            string employeeNumber = "112";
 
             return $"Name : {name}\nSurname : {surName}\nAge : {age}\nGender : {gender}\nPesel Number : {peselNumber}\nEmployee number : {employeeNumber}\n";
         }
@@ -85,13 +85,23 @@ namespace Modul2_Data_types
         private static void TaskFive()
         {
             bool isCorrect = false;
-            long userTelephoneNumber = default;
             int userHeight = default;
             float userWeight = default;
             string firstName = string.Empty;
             string lastName = string.Empty;
             string userEmailAddress = string.Empty;
+            string userTelephoneNumber = string.Empty;
             string temporaryUserInput = string.Empty;
+
+            bool IsDigitsOnly(string str)
+            {
+                foreach (char c in str)
+                {
+                    if (c < '0' || c > '9')
+                        return false;
+                }
+                return true;
+            }
 
             Console.WriteLine("Hello new user,\nwe need some personal information from you, please fill out truthfully\n");
 
@@ -103,7 +113,6 @@ namespace Modul2_Data_types
                 lastName = Console.ReadLine();
                 Console.WriteLine("Entry your E-Mail Address :");
                 userEmailAddress = Console.ReadLine();
-
                 Console.WriteLine($"\nOk, confirm that the data are correct to proceed\nYour name is :\n{firstName} {lastName}\nE-Mail Address :\n{userEmailAddress}\n");        
                 Console.WriteLine("Press 1 if data is correct.\nPress 2 if data does not match (you want to correct it)");
 
@@ -134,34 +143,50 @@ namespace Modul2_Data_types
             {
                 temporaryUserInput = Console.ReadLine();
 
-                if(!long.TryParse(temporaryUserInput,out userTelephoneNumber))
+                if (IsDigitsOnly(temporaryUserInput))
                 {
-                    Console.WriteLine("the telephone number has been entered incorrectly, please remember to use the correct format as in the example.\nExample :\n0048603123123\nEnter your number now :");
-                    continue;
+                    userTelephoneNumber = temporaryUserInput;
+                    isCorrect = true;
                 }
-                Console.WriteLine("OK, now we just need some more data about your body structure ( height , weight )");
-
-            heightIndication:
-                Console.WriteLine("Now enter how tall you are ( use the unit of cm for this )\");");
-                temporaryUserInput = Console.ReadLine();
-
-                if (!int.TryParse(temporaryUserInput, out userHeight) || !(userHeight > 1 && userHeight < 300))
+                else
                 {
-                    Console.WriteLine($"It looks like the height you entered -> {temporaryUserInput}, was incorrectly entered, try again.");
-                    goto heightIndication;
+                    Console.WriteLine("The telephone number has been entered incorrectly, please remember to use the correct format as in the example.\nExample :\n0048603123123\nEnter your number again :");
                 }
-
-            weightIndication:
-                Console.WriteLine("Now enter how much you weigh ( decimal numbers are also acceptable, use the unit of kg )\nexample : 85.5");
-                temporaryUserInput = Console.ReadLine();
-
-                if (!float.TryParse(temporaryUserInput, out userWeight) || !(userWeight > 1 && userWeight < 600))
-                {
-                    Console.WriteLine($"It looks like the weight you entered -> {temporaryUserInput}, was incorrectly entered, try again.");
-                    goto weightIndication;
-                }
-                isCorrect = true;
             }
+            
+            Console.WriteLine("OK, now we just need some more data about your body structure ( height , weight )");
+            Console.WriteLine("Now enter how tall you are ( use the unit of cm for this )");
+            isCorrect = false;
+            while (!isCorrect)
+            {
+                temporaryUserInput = Console.ReadLine();
+
+                if (int.TryParse(temporaryUserInput, out userHeight) && (userHeight > 1 && userHeight < 300))
+                {
+                    isCorrect = true;
+                }
+                else
+                {
+                    Console.WriteLine($"It looks like the height you entered -> {temporaryUserInput}, was incorrectly entered, try again.\nEnter now how tall you are ( use the unit of cm for this )");
+                }
+            }
+
+            Console.WriteLine("Now enter how much you weigh ( decimal numbers are also acceptable, use the unit of kg )\nexample : 85.5");
+            isCorrect = false;
+            while (!isCorrect)
+            {
+                temporaryUserInput = Console.ReadLine();
+
+                if (float.TryParse(temporaryUserInput, out userWeight) && (userWeight > 1 && userWeight < 600))
+                {
+                    isCorrect = true;
+                }
+                else
+                {
+                    Console.WriteLine($"It looks like the weight you entered -> {temporaryUserInput}, was incorrectly entered, try again.\nEnter now how much you weigh :");
+                }
+            }
+
             Console.WriteLine("\nYour registration process has been completed, we sincerely thank you for your registration, the following data will be forwarded to the administration :");
             Console.WriteLine($"Name : {firstName} {lastName}\nPhone number : {userTelephoneNumber}\nE-Mail : {userEmailAddress}\nHeight : {userHeight} cm.\nWeight : {userWeight:F2} kg.");
             Console.WriteLine("In case of irregularities, please contact our administration at:\nadmin@admin.com");
