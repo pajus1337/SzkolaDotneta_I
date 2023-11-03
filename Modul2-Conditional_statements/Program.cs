@@ -1,14 +1,4 @@
-﻿using System.Buffers.Text;
-using System.Collections.Concurrent;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Modul2_Conditional_statements
+﻿namespace Modul2_Conditional_statements
 {
     internal class Program
     {
