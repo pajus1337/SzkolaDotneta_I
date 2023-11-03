@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SzkolaDotneta_I", "SzkolaDo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modul2-Data_types", "Modul2-Data_types\Modul2-Data_types.csproj", "{A8CC0873-3484-406F-983C-757C125EEB15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modul2-Conditional_statements", "Modul2-Conditional_statements\Modul2-Conditional_statements.csproj", "{2AE73313-4BC0-42B5-967F-165763DC3039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modul2-Conditional_statements", "Modul2-Conditional_statements\Modul2-Conditional_statements.csproj", "{2AE73313-4BC0-42B5-967F-165763DC3039}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modul2-Loops", "Modul2-Loops\Modul2-Loops.csproj", "{7360AEB7-C26D-40B5-BF8F-7E3725A7AA2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2AE73313-4BC0-42B5-967F-165763DC3039}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE73313-4BC0-42B5-967F-165763DC3039}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE73313-4BC0-42B5-967F-165763DC3039}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7360AEB7-C26D-40B5-BF8F-7E3725A7AA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7360AEB7-C26D-40B5-BF8F-7E3725A7AA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7360AEB7-C26D-40B5-BF8F-7E3725A7AA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7360AEB7-C26D-40B5-BF8F-7E3725A7AA2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
