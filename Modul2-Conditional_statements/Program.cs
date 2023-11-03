@@ -1,5 +1,9 @@
 ﻿using System.Buffers.Text;
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using static System.Formats.Asn1.AsnWriter;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -19,9 +23,10 @@ namespace Modul2_Conditional_statements
             TaskSeven(25, 63, 79);
             TaskEight(80, 71, 0);
             TaskNine(41);
-            TaskTen(40,55,65);
+            TaskTen(40, 55, 65);
             TaskEleven(3);
             TaskTwelve(4);
+            TaskThirteen();
         }
 
         private static void TaskOne(int a, int b)
@@ -272,6 +277,209 @@ namespace Modul2_Conditional_statements
                 default:
                     Console.WriteLine("Out ouf range");
                     break;
+            }
+        }
+
+        private static void TaskThirteen()
+        {
+            bool isInputCorrect = false;
+            bool isValueSetForAandB = false;
+            bool isArithmeticOperatorSet = false;
+            bool isEndOfProgram = false;
+            double numberA = default;
+            double numberB = default;
+            char arithmeticOperator = default;
+
+            Console.WriteLine("Task Thirteen :");
+            Console.WriteLine("Welcome to :\nSimple calculator called \"Your head would calculate it faster\"\n");
+            Console.WriteLine("Press any key to start the program.");
+            Console.ReadKey();
+            Console.Clear();
+
+            while (!isEndOfProgram)
+            {
+                CalculatorMenu();
+            }
+
+            void SetValueAandB()
+            {
+                Console.Clear();
+                isInputCorrect = false;
+                isValueSetForAandB = false;
+                while (!isInputCorrect)
+                {
+                    Console.WriteLine("Enter the value for the first number : ");
+                    if (double.TryParse(Console.ReadLine(), out numberA))
+                    {
+                        isInputCorrect = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"entered value is incorrect, check the value and enter it again.");
+                    }
+                }
+
+                isInputCorrect = false;
+                while (!isInputCorrect)
+                {
+                    Console.WriteLine("Enter the value of the second number : ");
+                    if (double.TryParse(Console.ReadLine(), out numberB))
+                    {
+                        isInputCorrect = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"entered value is incorrect, check the value and enter it again.");
+                    }
+                }
+                isValueSetForAandB = true;
+                Console.WriteLine($"The values for the first and second numbers have been entered correctly\n[ A = {numberA} ]\n[ B = {numberB} ]");
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+
+            void CalculatorMenu()
+            {
+                Console.WriteLine("Simple Calculator Main Menu : ");
+                Console.WriteLine("1. Specify the number A and the number B on which you want to perform the calculation");
+                Console.WriteLine("2. Define the arithmetic operator to be performed");
+                Console.WriteLine("3. Make calculations");
+                Console.WriteLine("Q - Exit from the program");
+
+                switch (char.ToLower(Console.ReadKey(true).KeyChar))
+                {
+                    case '1':
+                        SetValueAandB();
+                        break;
+                    case '2':
+                        DefineArithmeticOperator();
+                        break;
+                    case '3':
+                        if (isValueSetForAandB && isArithmeticOperatorSet)
+                        {
+                            MakeCalculations(numberA, numberB, arithmeticOperator);
+                        }
+                        else
+                        {
+                            CheckRequirementsAndSendMessage();
+                        }
+                        break;
+                    case 'q':
+                        isEndOfProgram = true;
+                        break;
+                }
+            }
+
+            void DefineArithmeticOperator()
+            {
+                isArithmeticOperatorSet = false;
+                while (!isArithmeticOperatorSet)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Please define the arithmetic operator now :");
+                    Console.WriteLine("1. Addition");
+                    Console.WriteLine("2. Subtraction");
+                    Console.WriteLine("3. Multiplication");
+                    Console.WriteLine("4. Division");
+                    Console.WriteLine("5. Exit the menu");
+
+                    arithmeticOperator = Console.ReadKey(true).KeyChar;
+
+                    switch (arithmeticOperator)
+                    {
+                        case '1':
+                            arithmeticOperator = '+';
+                            isArithmeticOperatorSet = true;
+                            break;
+                        case '2':
+                            arithmeticOperator = '-';
+                            isArithmeticOperatorSet = true;
+                            break;
+                        case '3':
+                            arithmeticOperator = '*';
+                            isArithmeticOperatorSet = true;
+                            break;
+                        case '4':
+                            arithmeticOperator = '/';
+                            isArithmeticOperatorSet = true;
+                            break;
+                        case '5':
+                            arithmeticOperator = default;
+                            isArithmeticOperatorSet = false;
+                            Console.Clear();
+                            return;
+                        default:
+                            Console.WriteLine("The selected option does not exist.\nPress any key and select again");
+                            isArithmeticOperatorSet = false;
+                            Console.ReadKey();
+                            break;
+                    }
+                }
+                if (isArithmeticOperatorSet)
+                {
+                    Console.WriteLine("\nArithmetic Operator has been selected successfully.\nPress any key to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+
+            void MakeCalculations(double numberA, double numberB, char arithmeticOperator)
+            {
+                double result = default;
+
+                if ((numberA == 0 || numberB == 0) && (arithmeticOperator == '/'))
+                {
+                    Console.Clear();
+                    Console.WriteLine("Dividing by 0 is impossible");
+                    Console.WriteLine("Press any key to return to the main menu.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                else
+                {
+                    switch (arithmeticOperator)
+                    {
+                        case '+':
+                            result = numberA + numberB;
+                            break;
+                        case '-':
+                            result = numberA - numberB;
+                            break;
+                        case '*':
+                            result = numberA * numberB;
+                            break;
+                        case '/':
+                            result = numberA / numberB;
+                            break;
+                        default:
+                            Console.WriteLine("An unexpected program error occurred.");
+                            break;
+                    }
+                    Console.WriteLine($"\nResult: \n{numberA} {arithmeticOperator} {numberB} = {result}");
+                    Console.WriteLine("Press any key to return to the main menu.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+            }
+
+            void CheckRequirementsAndSendMessage()
+            {
+                Console.Clear();
+                if (!isArithmeticOperatorSet && !isValueSetForAandB)
+                {
+                    Console.WriteLine("Error : First set the numbers and the arithmetic operator.");
+                }
+                else if (!isArithmeticOperatorSet && isValueSetForAandB)
+                {
+                    Console.WriteLine("Error : The arithmetic operator has not yet been defined.");
+                }
+                else
+                {
+                    Console.WriteLine("Error : The numbers have not yet been determined.");
+                }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
         }
     }
