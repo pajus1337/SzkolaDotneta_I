@@ -5,7 +5,9 @@ namespace Modul2_Loops
     internal class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            TaskSeven();
+            /*
             TaskOne();
             TaskTwo();
             TaskThree();
@@ -15,6 +17,7 @@ namespace Modul2_Loops
 
             TaskEight();
             TaskNine();
+            TaskTen(18 , 21);*/
         }
 
         private static void TaskOne()
@@ -22,7 +25,7 @@ namespace Modul2_Loops
             int currentNumber = 2;
             int amountOfPrimNumbers = default;
 
-            Console.WriteLine("TaskEight One :");
+            Console.WriteLine("Task One :");
 
             do
             {
@@ -39,6 +42,7 @@ namespace Modul2_Loops
                 }
                 currentNumber++;
             } while (currentNumber != 100);
+
             Console.WriteLine($"Amount of prime numbers in range 1-100 = {amountOfPrimNumbers}");
         }
 
@@ -47,7 +51,7 @@ namespace Modul2_Loops
             StringBuilder stringBuilder = new StringBuilder();
             int i = 1;
 
-            Console.WriteLine("TaskEight Two : ");
+            Console.WriteLine("Task Two : ");
 
             do
             {                
@@ -57,6 +61,7 @@ namespace Modul2_Loops
                 }
                 i++;
             } while (i <= 1000);
+
             Console.WriteLine($"Even numbers in the range 1-1000 : {stringBuilder}");
         }
 
@@ -66,7 +71,7 @@ namespace Modul2_Loops
             int b = 1;
             int c = 0;
 
-            Console.WriteLine("TaskEight Three : ");
+            Console.WriteLine("Task Three : ");
 
             for (int i = 0; i <= 10; i++)
             {
@@ -84,12 +89,13 @@ namespace Modul2_Loops
             int counter = default;
             string userConsoleInput = string.Empty;
           
-            Console.WriteLine("TaskEight Four :");
+            Console.WriteLine("Task Four :");
             Console.WriteLine("To start building a pyramid, enter any integer with the amount you want to build from\nfor example: 10 : ");
+
             userConsoleInput = Console.ReadLine();
 
             if (int.TryParse(userConsoleInput, out userInteger))
-            {               
+            {                   
                 for (int i = 1; i < userInteger; i++)
                 {
                     for (int j = 1; j < i+1; j++)
@@ -126,13 +132,15 @@ namespace Modul2_Loops
             StringBuilder stringBuilder = new StringBuilder();
             int lastNumber = 20;
 
-            Console.WriteLine("TaskEight Five : ");
+            Console.WriteLine("Task Five :");
             stringBuilder.Append($"the result of numbers^3 in the range from 1 to {lastNumber} :\n");
+
             for (int i = 1; i <= lastNumber; i++)
             {
                 int result = (i * i * i);
                 stringBuilder.Append(result + " ");
             }            
+
             Console.WriteLine(stringBuilder);
         }
 
@@ -141,7 +149,7 @@ namespace Modul2_Loops
             int harmonicSeriesLength = 20;
             double sum = 0;
 
-            Console.WriteLine("TaskEight Six :");
+            Console.WriteLine("Task Six :");
 
             for (int i = 1; i <= harmonicSeriesLength; i++)
             {
@@ -161,7 +169,7 @@ namespace Modul2_Loops
             string testString = "Abcdefg";
             string reversString = string.Empty;
 
-            Console.WriteLine("TaskEight Nine :");
+            Console.WriteLine("Task Eight :");
 
             for (int i = testString.Length - 1; i >= 0; i--)
             {
@@ -187,7 +195,7 @@ namespace Modul2_Loops
         private static void TaskNine()
         {
             int testValue = 35;
-            int localTestValue = testValue;
+            int testValueToDisplay = testValue;
             string binarValueOfTestValueToRevers = string.Empty;
             string binarValueOfTestValue = string.Empty;
 
@@ -210,7 +218,41 @@ namespace Modul2_Loops
                 binarValueOfTestValue += binarValueOfTestValueToRevers[i].ToString();               
             }
 
-            Console.WriteLine($"The binary notation of the number {localTestValue} is as follows {binarValueOfTestValue} ");
+            Console.WriteLine($"The binary notation of the number {testValueToDisplay} is as follows {binarValueOfTestValue} ");
+        }
+
+        private static void TaskTen(int a, int b)
+        {
+            if (a <= 0 || b <= 0)
+            {
+                Console.WriteLine("Both input values must be greater than 0.");
+                return;
+            }
+
+            // NWD - Based on the principle of Euklides argorithm.
+            int valueA = a;
+            int valueB = b;
+            int valueNWW = default;
+            int valueNWD = 1;
+
+            for (int i = 0; valueA != valueB; i++)
+            {
+                if (valueA > valueB)
+                {
+                    valueA = (valueA - valueB);
+                }
+                else if (valueA < valueB)
+                {
+                    valueB = (valueB - valueA);
+                }                              
+            }
+
+            valueNWD = valueA;
+
+            // NWW Part.
+            valueNWW = (a * b) / valueNWD;
+
+            Console.WriteLine($"\"NWW\" For {a} & {b} = {valueNWW}");
         }
     }
 }
