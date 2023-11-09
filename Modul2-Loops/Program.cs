@@ -9,7 +9,6 @@ namespace Modul2_Loops
     {
         static void Main(string[] args)
         {
-            TaskSeven();
             TaskOne();
             TaskTwo();
             TaskThree();
