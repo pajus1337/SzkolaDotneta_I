@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Text;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Text;
 
 namespace Modul2_Loops
 {
