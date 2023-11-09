@@ -248,6 +248,7 @@ namespace Modul2_Loops
 
         private static void TaskNine()
         {
+            Console.WriteLine("Task Nine :");
             int testValue = 35;
             int testValueToDisplay = testValue;
             string binarValueOfTestValueToRevers = string.Empty;
@@ -277,6 +278,8 @@ namespace Modul2_Loops
 
         private static void TaskTen(int a, int b)
         {
+            Console.WriteLine("Task Ten :");
+
             if (a <= 0 || b <= 0)
             {
                 Console.WriteLine("Both input values must be greater than 0.");
