@@ -8,4 +8,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Modul2-Data_types\Modul2-Data_types.csproj" />
+  </ItemGroup>
+
 </Project>

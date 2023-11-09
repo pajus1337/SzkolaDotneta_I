@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel;
+using System.Text;
 
 namespace Modul2_Loops
 {
@@ -6,18 +7,16 @@ namespace Modul2_Loops
     {
         static void Main(string[] args)
         {
-            TaskSeven();
-            /*
             TaskOne();
             TaskTwo();
             TaskThree();
             TaskFour();
             TaskFive();
             TaskSix();
-
+            TaskSeven(9);
             TaskEight();
             TaskNine();
-            TaskTen(18 , 21);*/
+            TaskTen(18, 21);
         }
 
         private static void TaskOne()
@@ -159,9 +158,55 @@ namespace Modul2_Loops
             Console.WriteLine(sum);
         }
 
-        private static void TaskSeven()
+        private static void TaskSeven(int shortestDiagonalInput)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+            int shortestDiagonal = shortestDiagonalInput;
+            int diamondPartCounter = 1;
+            char emptySpace = ' ';
+            char diamondPart = '*';
 
+
+            for (int i = 0; i < shortestDiagonal-1/2; i++)
+            {
+                for (int k = i; k < shortestDiagonal/2; k++)
+                {
+                    stringBuilder.Append(emptySpace);
+                }
+
+                for (int j = 0; j < diamondPartCounter ; j++)
+                {                  
+                    stringBuilder.Append(diamondPart);
+                }
+
+                if( diamondPartCounter >= shortestDiagonal)
+                {
+                    stringBuilder.Append('\n');
+                    diamondPartCounter -= 2;
+                    break;
+                }
+                
+                diamondPartCounter += 2;
+                stringBuilder.Append('\n');
+            }
+
+            for (int i = 0; i < shortestDiagonal/2; i++)
+            {
+                for (int k = 0; k < i+1; k++)
+                {
+                    stringBuilder.Append(emptySpace);                   
+                }
+
+                for (int j = 0; j < diamondPartCounter; j++)
+                {
+                    stringBuilder.Append(diamondPart);
+                }
+
+                diamondPartCounter -= 2;
+                stringBuilder.Append('\n');
+            }
+
+            Console.WriteLine(stringBuilder);
         }
 
         private static void TaskEight()

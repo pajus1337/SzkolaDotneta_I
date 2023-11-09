@@ -18,16 +18,16 @@ liczby w formie jak poniżej:
 1 + ½ + 1/3 + ¼ itd.
 
 7. Napisz program, który dla liczby zadanej przez użytkownika narysuje diament o krótszej
-przekątnej o długości wprowadzonej przez użytkownika i wg wzoru:
-*
-***
-*****
-*******
+przekątnej o długości wprowadzonej przez użytkownika i wg wzoru: 
+    *
+   ***
+  *****
+ *******
 *********
-*******
-*****
-***
-*
+ *******
+  ***** 
+   ***
+    *
 
 8. Napisz program, który odwróci wprowadzony przez użytkownika ciąg znaków. Np.
 Testowe dane:
